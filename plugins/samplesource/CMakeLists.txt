@@ -84,6 +84,12 @@ else()
     message(STATUS "Not building rtlsdr (ENABLE_RTLSDR=${ENABLE_RTLSDR} LIBRTLSDR_FOUND=${LIBRTLSDR_FOUND})")
 endif()
 
+if(ENABLE_VRTZMQ AND ZMQ_FOUND AND VRT_FOUND)
+    add_subdirectory(vrtzmq)
+else()
+    message(STATUS "Not building vrt-zmq (ENABLE_VRTZMQ=${ENABLE_VRTZMQ} ZMQ_FOUND=${ZMQ_FOUND} VRT_FOUND=${VRT_FOUND})")
+endif()
+
 if(ENABLE_SOAPYSDR AND SOAPYSDR_FOUND)
     add_subdirectory(soapysdrinput)
 else()
