@@ -55,8 +55,10 @@ VRTZMQGui::VRTZMQGui(DeviceUISet *deviceUISet, QWidget* parent) :
     getContents()->setStyleSheet("#VRTZMQGui { background-color: rgb(64, 64, 64); }");
     m_helpURL = "plugins/samplesource/vrtzmq/readme.md";
 	ui->centerFrequency->setColorMapper(ColorMapper(ColorMapper::GrayGold));
+    ui->centerFrequency->setValueRange(8, 0, 99999999);
 
     ui->sampleRate->setColorMapper(ColorMapper(ColorMapper::GrayGreenYellow));
+    ui->sampleRate->setValueRange(8, 0, 99999999);
 
     ui->HostName->clear();
     ui->HostName->setText(m_settings.m_host);
@@ -211,7 +213,7 @@ void VRTZMQGui::displaySampleRate()
         uint32_t basebandSampleRate = m_sampleRate; ///(1<<m_settings.m_log2Decim);
         ui->deviceRateText->setText(tr("%1k").arg(QString::number((float) basebandSampleRate / 1000.0f, 'g', 5)));
 
-        ui->centerFrequency->setValue(m_deviceCenterFrequency);
+        ui->centerFrequency->setValue(m_deviceCenterFrequency/1000);
         
     }
 
